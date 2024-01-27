@@ -1,21 +1,20 @@
-Index
+<!-- Index -->
+
+If this page is blank, there's probably a problem with the database. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
 
 <?php
 session_start();
 
-  //include("connection.php");
+  require_once('/etc/LearningGame/config.php');
   include("functions.php");
-  $dbhost = "localhost";
-  $dbuser = "felleson1";
-  $dbpass = "S218277";
-  $dbname = "Game1";
-  $con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+
+  $con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
   $user_data = check_login($con);
   $tori = $user_data['user_id'];
-  $weeklyQuery = "select * from WeekLeaderboard where id = $tori limit 1";
-  $monthlyQuery = "select * from MonthLeaderboard where id = $tori limit 1";
-  $alltimeQuery = "select * from AllTimeLeaderboard where id = $tori limit 1";
-  $dailyQuery = "select * from DayLeaderboard where id = $tori limit 1";
+  $weeklyQuery = "select * from WeekLeaderboard where user_id = $tori limit 1";
+  $monthlyQuery = "select * from MonthLeaderboard where user_id = $tori limit 1";
+  $alltimeQuery = "select * from AllTimeLeaderboard where user_id = $tori limit 1";
+  $dailyQuery = "select * from DayLeaderboard where user_id = $tori limit 1";
 
   $convertdayQuery = mysqli_query($con, $dailyQuery);
   $convertweekQuery = mysqli_query($con, $weeklyQuery);
@@ -139,15 +138,15 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
 
 /* url('img_girl.jpg'); */
   <ul id="planet">
-  <li style="background-image:url('../Photos/Earth.jpg')">SPACE</li>
-  <li style="background-image:url('../Photos/Pluto2.jpg')">PLUTO</li>
-  <li style="background-image:url('../Photos/Neptune.jpg')">NEPTUNE</li>
-  <li style="background-image:url('../Photos/Uranus.jpg')">URANUS</li>
-  <li style="background-image:url('../Photos/Saturn.jpg')">SATURN</li>
-  <li style="background-image:url('../Photos/Jupiter.jpg')">
+  <li style="background-image:url('./Photos/Earth.jpg')">SPACE</li>
+  <li style="background-image:url('./Photos/Pluto2.jpg')">PLUTO</li>
+  <li style="background-image:url('./Photos/Neptune.jpg')">NEPTUNE</li>
+  <li style="background-image:url('./Photos/Uranus.jpg')">URANUS</li>
+  <li style="background-image:url('./Photos/Saturn.jpg')">SATURN</li>
+  <li style="background-image:url('./Photos/Jupiter.jpg')">
   JUPITER</li>
-  <li style="background-image:url('../Photos/Mars.png')">MARS</li>
-  <li style="background-image:url('../Photos/moon.jpg')">MOON</li>
+  <li style="background-image:url('./Photos/Mars.png')">MARS</li>
+  <li style="background-image:url('./Photos/moon.jpg')">MOON</li>
   </ul>
   <canvas id="game" width="192" height="192"></canvas>
 

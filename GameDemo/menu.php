@@ -1,15 +1,15 @@
 <!-- Menu -->
 
+If this page is blank, there's probably a problem with the database. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
+
 <?php
 //probably could be much shorter (just take part of the check_login function if it doesn't require a db connection)
 session_start();
 
+require_once('/etc/LearningGame/config.php');
 include("functions.php");
-$dbhost = "localhost";
-$dbuser = "felleson1";
-$dbpass = "S218277";
-$dbname = "Game1";
-$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+
+$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 $x = check_login($con);
 ?>
 
@@ -80,7 +80,7 @@ $x = check_login($con);
                 <a href="./index.php" data-text="&nbsp;Play">&nbsp;Play&nbsp;</a>
             </li>
             <li style="--clr:#fcf86a">
-                <a href="../Leaderboard/leaderboard6.php" data-text="&nbsp;Leaderboard">&nbsp;Leaderboard&nbsp;</a>
+                <a href="./Leaderboard/leaderboard6.php" data-text="&nbsp;Leaderboard">&nbsp;Leaderboard&nbsp;</a>
             </li>
             <!-- <li style="--clr:#ffdd1c">
                 <a href="" data-text="&nbsp;Challenges">&nbsp;Challenges&nbsp;</a>

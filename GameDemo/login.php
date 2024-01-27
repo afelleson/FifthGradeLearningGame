@@ -1,14 +1,12 @@
 <!-- Login -->
 
+If this page is blank, there's probably a problem with the database. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
+
 <?php
 
-$dbhost = "localhost";
-$dbuser = "felleson1";
-$dbpass = "S218277";
-$dbname = "Game1";
+require_once('/etc/LearningGame/config.php');
 
-
-if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
+if(!$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME))
 {
 
 	die("failed to connect!");
@@ -18,7 +16,6 @@ session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-	// include("connection.php");
 	include("functions.php");
 
 		//check if there's already an active session. if so, redirect to menu page.
@@ -80,7 +77,7 @@ ini_set("display_errors", 1);
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>LG1 Login</title>
+  <title>VASA-WIGGIN SPACEDASH Login</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
 	<link rel="stylesheet" href="./starstyle.css">
 	<!-- <link rel="stylesheet" href="./style.css"> -->
@@ -220,34 +217,34 @@ body {
 #comets i {
   display: inline-block;
   width: 250px;
-  height: 150px;position:absolute;
+  height: 150px;
+  position:absolute;
   border-radius: 5% 40% 70%;
   box-shadow: inset 0px 0px 1px #294b67;
   border: 1px solid #333;
   z-index: 1;
   background-color: #fff;
   opacity: .7;
-  -webkit-animation: falling 10s 10s infinite;
-  -webkit-animation-timing-function:ease-in;
+  animation: falling 10s 10s infinite ease-in;
 	z-index: -1;
 }
 
 
 #comets i:nth-child(1){
   left: 50vw;
-  height:73px;
-  width:3px;
+  height: 73px;
+  width: 3px;
   background-color: #fff;
 }
 #comets i:nth-child(3){
-  height:11px;
-  width:3px;
-  -webkit-animation: falling3 8s 3s infinite;
+  height: 11px;
+  width: 3px;
+  animation: falling3 8s 3s infinite;
   left: 10vw;
 background-color: #fff;
 }
 #comets i:nth-child(2){
-  -webkit-animation: falling2 6s 1s infinite;
+  animation: falling2 6s 1s infinite;
   left: 30vw;
   height:70px;
   width:4px;
@@ -258,54 +255,52 @@ background-color: #fff;
 
 
 
-@-webkit-keyframes falling {
+@keyframes falling {
 
   0% {
-    -webkit-transform: translate3d(100px,0px,0px) rotate(160deg);
+    transform: translate3d(100px, 0px, 0) rotate(160deg);
   }
 
   3% {
-    -webkit-transform:
-    translate3d(450px,900px,0) rotate(160deg);
+    transform: translate3d(450px, 900px, 0) rotate(160deg);
     opacity: 0;
   }
   100% {
-    -webkit-transform:
-    translate3d(450px,900px,0) rotate(160deg);
+    transform: translate3d(450px, 900px, 0) rotate(160deg);
     opacity: 0;
   }
 }
 
-@-webkit-keyframes falling3 {
- 0% {
-  -webkit-transform: translate3d(0,0,0) rotate(150deg);
+@keyframes falling3 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(150deg);
+  }
+
+  10% {
+    transform: translate3d(430px, 640px, 0) rotate(150deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(430px, 640px, 0) rotate(150deg);
+    opacity: 0;
+  }
 }
 
-10% {
-  -webkit-transform: translate3d(430px,640px,0) rotate(150deg);
-  opacity: 0;
-}
+@keyframes falling2 {
+  0% {
+    transform:translate3d(100px,0,0) rotate(130deg);
+  }
 
-100% {
-  -webkit-transform: translate3d(430px,640px,0) rotate(150deg);
-  opacity: 0;
-}
-}
+  15% {
+    transform:translate3d(800px,580px,0) rotate(130deg);
+    opacity: 0;
+  }
 
-@-webkit-keyframes falling2 {
- 0% {
-  -webkit-transform:translate3d(100px,0,0) rotate(130deg);
-}
-
-15% {
-  -webkit-transform:translate3d(800px,580px,0) rotate(130deg);
-  opacity: 0;
-}
-
-100% {
-  -webkit-transform: translate3d(800px,680px,0) rotate(180deg);
-  opacity: 0;
-}
+  100% {
+    transform: translate3d(800px,680px,0) rotate(180deg);
+    opacity: 0;
+  }
 }
 </style>
 
@@ -329,7 +324,6 @@ background-color: #fff;
   </form>
 </div>
 <!-- partial -->
-  <!-- <script  src="./script.js"></script> -->
 
 	<div id="stars"></div>
 	<div id="stars2"></div>
