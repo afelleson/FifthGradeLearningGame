@@ -1,0 +1,177 @@
+body {
+  background: #091654;
+  font-family: Trebuchet MS;
+}
+
+.header {
+  padding: 50px;
+  text-align: center;
+  background: #4aa9c7;
+  color: black;
+  font-size: 60px;
+  border-radius: 20px;
+  width: 68%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.button-group {
+  background-color: #000;
+  color: white;
+  margin: 1rem 0;
+  display: flex;
+  padding: 5px;
+  border-radius: 21px;
+  min-height: 60px;
+  overflow: hidden;
+  position: relative;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button-group[data-left="4px"]:before {
+  left: 8px;
+}
+.button-group[data-left="33%"]:before {
+  left: 34%;
+}
+.button-group[data-left="66%"]:before {
+  left: 66.7%;
+}
+.button-group:before {
+  transition: all 0.3s ease;
+  content: '';
+  position: absolute;
+  top: 8px;
+  width: calc(33.3% - 8px);
+  height: calc(100% - 8px - 8px);
+  background-color: #4aa9c7;
+  z-index: 1;
+  border-radius: 16px;
+}
+.button-group button {
+  flex: 1;
+  min-width: 100px;
+  padding: 5px 3px;
+  border: none;
+  font-size: 25px;
+  position: relative;
+  background-color: transparent;
+  z-index: 1;
+  color: white;
+}
+.button-group button:hover {
+  cursor: pointer;
+}
+
+
+
+.tableFixHead {
+  overflow-y: auto;
+  height: 100%;
+}
+.tableFixHead thead th {
+  position: sticky;
+  top: 0;
+}
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+  border-left: none;
+  border-right: none;
+  border-radius: 20px;
+  overflow: hidden;
+}
+th,
+td {
+  padding: 8px 16px;
+  text-align: center;
+  height: 65px;
+}
+tr:not(:last-child){
+  border-bottom: 1px solid rgba(255, 255, 255, .7);
+}
+th {
+  background: black;
+  color: white;
+  border-bottom: 2px solid rgba(255, 255, 255, .7);
+}
+th:nth-child(3){
+  text-align: left;
+}
+th:nth-child(4){
+  text-align: left;
+}
+
+/* nth-child(1) = the first td in each tr */
+td:nth-child(1) { /*first col*/
+  width: 10%;
+  background: black;
+  color: #ccc;
+  }
+
+/* second col*/
+td:nth-child(2) {
+  width: 8%;
+  background: #ccc;
+  text-align: right;
+}
+
+/* third col */
+td:nth-child(3) {
+  width: 25%;
+  background: #ccc;
+  text-align: left;
+ }
+
+/* fourth col */
+td:nth-child(4) {
+  width: 35%;
+  background: #ccc;
+  text-align: left;
+ }
+
+/* fifth col */
+td:nth-child(5) {
+  width: 20%;
+  background: #ccc;
+  color: #000099;
+  text-align: center;
+ }
+
+
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /*border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 3px 3px;
+  border-radius: 6px;
+  font-size: 8pt;
+  opacity:0.9;
+  /* Position the tooltip text */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
