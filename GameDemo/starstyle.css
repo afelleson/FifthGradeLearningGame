@@ -1,5 +1,8 @@
 /* Star background css */
 
+.stars {
+  overflow: hidden;
+}
 
 #stars {
   z-index: -1;
