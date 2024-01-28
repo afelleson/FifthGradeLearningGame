@@ -1,29 +1,5 @@
 <!-- Leaderboard index -->
 
-If this page is blank, there's probably a problem with the database. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
-
-<?php
-
-require_once('/etc/LearningGame/config.php');
-
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
-$week_table_name = "WeekLeaderboard";
-$month_table_name = "MonthLeaderboard";
-$alltime_table_name = "AllTimeLeaderboard";
-
-//create connection
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-//get data from database
-$weektable = mysqli_query($connection, "SELECT * FROM " . $week_table_name . " ORDER BY Score DESC");
-$monthtable = mysqli_query($connection, "SELECT * FROM " . $month_table_name . " ORDER BY Score DESC");
-$alltable = mysqli_query($connection, "SELECT * FROM " . $alltime_table_name . " ORDER BY Score DESC");
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,7 +8,38 @@ $alltable = mysqli_query($connection, "SELECT * FROM " . $alltime_table_name . "
     <link rel="stylesheet" href="./leaderboard.css">
     <link rel="stylesheet" href="../starstyle.css">
   </head>
+
   <body>
+  <div id="error-message">
+        There's a problem with the database connection or initial queries. An expected database, table, column, etc., is not being found.
+  </div>
+
+  <?php
+    require_once('/etc/LearningGame/config.php');
+
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+
+    $week_table_name = "WeekLeaderboard";
+    $month_table_name = "MonthLeaderboard";
+    $alltime_table_name = "AllTimeLeaderboard";
+
+    //create connection
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+    //get data from database
+    $weektable = mysqli_query($connection, "SELECT * FROM " . $week_table_name . " ORDER BY Score DESC");
+    $monthtable = mysqli_query($connection, "SELECT * FROM " . $month_table_name . " ORDER BY Score DESC");
+    $alltable = mysqli_query($connection, "SELECT * FROM " . $alltime_table_name . " ORDER BY Score DESC");
+  ?>
+
+  <style>
+    #error-message {
+        display: none;
+    }
+  </style>
 
   <div class=header
     <header>LEADERBOARD <i class="fa-solid fa-rocket"></i></header>
