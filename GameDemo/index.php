@@ -372,41 +372,16 @@ $avcolor3 = '1';
 
         <div id="quest">
             <h4 class="title"></h4>
-            <h4></h4>
-            <h4></h4>
+            <h4></h4><h4></h4>
             <table>
-                <tr>
-                    <th>Distance traveled</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Correct question answers</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Word guessing score</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Tokens collected</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Big tokens collected</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Asteroids destroyed</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Places visited</th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Mission completed</th>
-                    <td></td>
-                </tr>
+                <tr><th>Distance traveled</th><td></td></tr>
+                <tr><th>Correct question answers</th><td></td></tr>
+                <tr><th>Word guessing score</th><td></td></tr>
+                <tr><th>Tokens collected</th><td></td></tr>
+                <tr><th>Big tokens collected</th><td></td></tr>
+                <tr><th>Asteroids destroyed</th><td></td></tr>
+                <tr><th>Places visited</th><td></td></tr>
+                <tr><th>Mission completed</th><td></td></tr>
                 <tr>
                     <th class="total">TOTAL</th>
                     <td class="total"></td>
@@ -524,7 +499,7 @@ $avcolor3 = '1';
 
 
 
-
+            /* Immediately-Invoked Function Expression (used to keep variables within a specific scope) */
             ! function(t) {
 
                 var e = {};
@@ -578,8 +553,8 @@ $avcolor3 = '1';
                 t.exports = "precision mediump float;attribute vec3 aPos;attribute vec3 aNorm;uniform mat4 uWorld;uniform mat4 uProj;uniform mat3 uInverse;uniform float uStroke;varying vec4 vPos;varying vec3 vNorm;void main(){vec4 a;a.w=1.0;a.xyz=(aPos+(aNorm*uStroke));vPos=(uWorld*a);vNorm=(uInverse*aNorm);gl_Position=(uProj*vPos);}"
             }, function(t, e) {
                 t.exports = "precision mediump float;uniform vec4 uColor;uniform vec3 uLight;varying vec4 vPos;varying vec3 vNorm;void main(){float a;vec3 b;b=normalize((uLight-vPos.xyz));vec3 c;c=normalize(vNorm);vec3 d;d=normalize(-(vPos.xyz));vec3 e;vec3 f;f=-(b);e=(f-(2.0*(dot(c,f)*c)));a=0.0;if((uColor.w>0.0)){a=pow(max(dot(e,d),0.0),uColor.w);}mediump vec4 g;g.w=1.0;g.xyz=(uColor.xyz*((vec3(0.2,0.2,0.2)+(vec3(0.8,0.8,0.8)*a))+(vec3(0.8,0.8,0.8)*max(dot(c,b),0.0))));gl_FragColor=g;}"
-            }, function(t, e, s) {}, function(t, e, s) {
-                /* console.log("hey"); */
+            }, function(t, e, s) {
+            }, function(t, e, s) {
                 var questionBank = {
                     "<em>If you go camping for more than a week, you would make sure you have plenty of food and the <b>gear</b> to cook and eat it with.</em> What is an example of <b>gear</b> in this context?": ["c", 1, "english", "A. a tent", "B. a hammer", "C. a saucepan", "D. a backpack"],
                     "The mass of four boxes are given below: <br> Box A: 4kg <br> Box B: 5kg <br> Box C: 20kg <br> Box D: 6kg <br> Which box requires the smallest force to lift it off the ground?": ["a", 1, "science", "A. Box A", "B. Box B", "C. Box C", "D. Box D"],
