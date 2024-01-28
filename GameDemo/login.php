@@ -1,339 +1,142 @@
 <!-- Login -->
 
-If this page is blank, there's probably a problem with the database. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
-
-<?php
-
-require_once('/etc/LearningGame/config.php');
-
-if(!$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME))
-{
-
-	die("failed to connect!");
-}
-
-session_start();
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-	include("functions.php");
-
-		//check if there's already an active session. if so, redirect to menu page.
-		if(isset($_SESSION['user_id']))
-		{
-			$id = $_SESSION['user_id'];
-			$query = "select * from LoginCreds where user_id = '$id' limit 1";
-
-			$result = mysqli_query($con,$query);
-			if($result && mysqli_num_rows($result) > 0)
-			{
-				header("Location: menu.php");
-				die;
-			}
-		}
-
-	// check for user input, check username and pw against database
-	if($_SERVER['REQUEST_METHOD'] == "POST")
-	{
-		//something was posted
-		$user_name = $_POST['username'];
-		$password = $_POST['password'];
-
-		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
-		{
-
-			//read from database
-			$query = "select * from LoginCreds where username = '$user_name' limit 1";
-			$result = mysqli_query($con, $query);
-
-			if($result)
-			{
-				if($result && mysqli_num_rows($result) > 0)
-				{
-
-					$user_data = mysqli_fetch_assoc($result);
-
-					if($user_data['password'] === $password)
-					{
-						echo 'correct';
-						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: ./menu.php");
-						die;
-					}
-				}
-			}
-
-			echo "wrong username or password!";
-		}else
-		{
-			echo "missing username and/or password!";
-		}
-	}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
   <title>VASA-WIGGIN SPACEDASH Login</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
-	<link rel="stylesheet" href="./starstyle.css">
-	<!-- <link rel="stylesheet" href="./style.css"> -->
-
+  <link rel="stylesheet" href="./login.css">
+  <link rel="stylesheet" href="./starstyle.css">
 </head>
+
 <body>
-<script>
-/*
 
-inspiration:
-https://dribbble.com/shots/2292415-Daily-UI-001-Day-001-Sign-Up
+  <div id="error-message" style="background: black; font-family: 'Rubik', sans-serif;">
+      If this page is blank, there's probably a problem with the database connection. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
+  </div>
 
-*/
+  <?php
+    include('/etc/LearningGame/config.php');
 
-let form = document.querySelector('form');
+    if(!$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME))
+    {
+      die("failed to connect!");
+    }
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  return false;
-});
+    session_start();
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
 
+      include("functions.php");
 
-</script>
+        //check if there's already an active session. if so, redirect to menu page.
+        if(isset($_SESSION['user_id']))
+        {
+          $id = $_SESSION['user_id'];
+          $query = "select * from LoginCreds where user_id = '$id' limit 1";
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-}
+          $result = mysqli_query($con,$query);
+          if($result && mysqli_num_rows($result) > 0)
+          {
+            header("Location: menu.php");
+            die;
+          }
+        }
 
-body {
-  background: black;
-  font-family: "Rubik", sans-serif;
-}
+      // check for user input, check username and pw against database
+      if($_SERVER['REQUEST_METHOD'] == "POST")
+      {
+        //something was posted
+        $user_name = $_POST['username'];
+        $password = $_POST['password'];
 
-.login-form {
-  background: #fff;
-  width: 500px;
-  margin: 65px auto;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
-}
-.login-form h1 {
-  padding: 35px 35px 0 35px;
-  font-weight: 300;
-}
-.login-form .content {
-  padding: 35px;
-  text-align: center;
-}
-.login-form .input-field {
-  padding: 12px 5px;
-}
-.login-form .input-field input {
-  font-size: 16px;
-  display: block;
-  font-family: "Rubik", sans-serif;
-  width: 100%;
-  padding: 10px 1px;
-  border: 0;
-  border-bottom: 1px solid #747474;
-  outline: none;
-  transition: all 0.2s;
-}
-.login-form .input-field input::-moz-placeholder {
-  text-transform: uppercase;
-}
-.login-form .input-field input:-ms-input-placeholder {
-  text-transform: uppercase;
-}
-.login-form .input-field input::placeholder {
-  text-transform: uppercase;
-}
-.login-form .input-field input:focus {
-  border-color: #222;
-}
-.login-form a.link {
-  text-decoration: none;
-  color: #747474;
-  letter-spacing: 0.2px;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-top: 20px;
-}
-.login-form .action {
-  display: flex;
-  flex-direction: row;
-}
-.login-form .action button {
-  width: 100%;
-  border: none;
-  padding: 18px;
-  font-family: "Rubik", sans-serif;
-  cursor: pointer;
-  text-transform: uppercase;
-  background: #e8e9ec;
-  color: #777;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 0;
-  letter-spacing: 0.2px;
-  outline: 0;
-  transition: all 0.3s;
-}
-.login-form .action button:hover {
-  background: #d8d8d8;
-}
-.login-form .action button:nth-child(2) {
-  background: #2d3b55;
-  color: #fff;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 4px;
-}
-.login-form .action button:nth-child(2):hover {
-  background: #3c4d6d;
-}
+        if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+        {
+
+          //read from database
+          $query = "select * from LoginCreds where username = '$user_name' limit 1";
+          $result = mysqli_query($con, $query);
+
+          if($result)
+          {
+            if($result && mysqli_num_rows($result) > 0)
+            {
+
+              $user_data = mysqli_fetch_assoc($result);
+
+              if($user_data['password'] === $password)
+              {
+                echo 'correct';
+                $_SESSION['user_id'] = $user_data['user_id'];
+                header("Location: ./menu.php");
+                die;
+              }
+            }
+          }
+
+          echo "wrong username or password!";
+        }else
+        {
+          echo "missing username and/or password!";
+        }
+      }
+  ?>
 
 
+  <style>
+    #error-message {
+      display: none;
+    }
+  </style>
 
+  <!-- partial:index.partial.html -->
+  <div class="login-form">
+    <form method="post">
+      <h1>Login</h1>
+      <div class="content">
+        <div class="input-field">
+          <input type="username" name ="username" placeholder="username" autocomplete="nope">
+        </div>
+        <div class="input-field">
+          <input type="password" name = "password" placeholder="Password" autocomplete="new-password">
+        </div>
 
-/* comets animations */
-
-#comets{
-  z-index: -1;
-	position:relative;
-  top:-150px;
-  width:100vw;
-  text-align: left;
-  height: 100%;
-  min-height: 900px;
-  overflow:hidden;
-}
-
-#comets i {
-  display: inline-block;
-  width: 250px;
-  height: 150px;
-  position:absolute;
-  border-radius: 5% 40% 70%;
-  box-shadow: inset 0px 0px 1px #294b67;
-  border: 1px solid #333;
-  z-index: 1;
-  background-color: #fff;
-  opacity: .7;
-  animation: falling 10s 10s infinite ease-in;
-	z-index: -1;
-}
-
-
-#comets i:nth-child(1){
-  left: 50vw;
-  height: 73px;
-  width: 3px;
-  background-color: #fff;
-}
-#comets i:nth-child(3){
-  height: 11px;
-  width: 3px;
-  animation: falling3 8s 3s infinite;
-  left: 10vw;
-background-color: #fff;
-}
-#comets i:nth-child(2){
-  animation: falling2 6s 1s infinite;
-  left: 30vw;
-  height:70px;
-  width:4px;
-  background-color: #fff;
-
-}
-
-
-
-
-@keyframes falling {
-
-  0% {
-    transform: translate3d(100px, 0px, 0) rotate(160deg);
-  }
-
-  3% {
-    transform: translate3d(450px, 900px, 0) rotate(160deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translate3d(450px, 900px, 0) rotate(160deg);
-    opacity: 0;
-  }
-}
-
-@keyframes falling3 {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(150deg);
-  }
-
-  10% {
-    transform: translate3d(430px, 640px, 0) rotate(150deg);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate3d(430px, 640px, 0) rotate(150deg);
-    opacity: 0;
-  }
-}
-
-@keyframes falling2 {
-  0% {
-    transform:translate3d(100px,0,0) rotate(130deg);
-  }
-
-  15% {
-    transform:translate3d(800px,580px,0) rotate(130deg);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate3d(800px,680px,0) rotate(180deg);
-    opacity: 0;
-  }
-}
-</style>
-
-<!-- partial:index.partial.html -->
-<div class="login-form">
-  <form method="post">
-    <h1>Login</h1>
-    <div class="content">
-      <div class="input-field">
-        <input type="username" name ="username" placeholder="username" autocomplete="nope">
       </div>
-      <div class="input-field">
-        <input type="password" name = "password" placeholder="Password" autocomplete="new-password">
+      <div class="action">
+
+        <button type="submit">Sign in</button>
       </div>
+    </form>
+  </div>
+  <!-- partial -->
 
-    </div>
-    <div class="action">
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
 
-      <button type="submit">Sign in</button>
-    </div>
-  </form>
-</div>
-<!-- partial -->
+  <div id="comets">
+    <i></i>
+    <i></i>
+    <i></i>
+  </div>
 
-	<div id="stars"></div>
-	<div id="stars2"></div>
-	<div id="stars3"></div>
+  <script>
+    /*
 
-	<div id="comets">
-  <i></i>
-  <i></i>
-  <i></i>
-</div>
+    inspiration:
+    https://dribbble.com/shots/2292415-Daily-UI-001-Day-001-Sign-Up
+
+    */
+
+    let form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+  </script>
 
 </body>
 </html>
