@@ -8,12 +8,24 @@
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
   <link rel="stylesheet" href="./login.css">
   <link rel="stylesheet" href="./starstyle.css">
+
+  <script>
+    /* inspiration: https://dribbble.com/shots/2292415-Daily-UI-001-Day-001-Sign-Up */
+
+    let form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+  </script>
 </head>
 
 <body>
 
   <div id="error-message" style="background: black; font-family: 'Rubik', sans-serif;">
-      If this page is blank, there's probably a problem with the database connection. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
+    If this page is blank, there's probably a problem with the database connection. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found.
   </div>
 
   <?php
@@ -120,23 +132,6 @@
     <i></i>
     <i></i>
   </div>
-
-  <script>
-    /*
-
-    inspiration:
-    https://dribbble.com/shots/2292415-Daily-UI-001-Day-001-Sign-Up
-
-    */
-
-    let form = document.querySelector('form');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      return false;
-    });
-
-  </script>
 
 </body>
 </html>
