@@ -1,4 +1,5 @@
 <!-- Index -->
+<!-- Based on https://github.com/tricsi/spacecraft, which is deployed here: https://tricsi.github.io/spacecraft/. -->
 
 <!-- If this page is blank, there's probably a problem with the database connection. Either the login credentials are wrong, or an expected database, table, column, etc., is not being found. -->
 
