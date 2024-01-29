@@ -42,6 +42,18 @@
 <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://pluspng.com/img-png/linux-logo-png-brand-brands-linux-logo-logos-icon-512x512.png" alt="linux" width="40" height="40"/> </a> 
  </p>
 
+<h2>Screenshots</h2>
+
+![Login screen with starry background](Screenshots/Login.png)
+![Menu options: play, leaderboard, report bug, and logout](Screenshots/Menu.png)
+![Game start: a ball rolling on a platform with obstacles and coins](Screenshots/Game.png)
+![Multiple choice question pop-up](Screenshots/MC_Q.png)
+![Fill-in-the-blank question pop-up](Screenshots/Fill_in_Q.png)
+![Mystery word hangman pop-up](Screenshots/Word_start.png)
+![Mystery word hangman with hints visible](Screenshots/Word_guess.png)
+![End screen with score and correct answer tallies](Screenshots/End_game.png)
+![Leaderboard with mouse hover for badge description](Screenshots/Leaderboard_w_hover.png)
+
 <h2 align="center">How to install the game on your own server:</h2>
 
 <h3 align="left">Working entirely on the Linux machine (virtual machine or local device) you want to serve the website from:</h3> 
