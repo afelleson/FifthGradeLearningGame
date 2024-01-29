@@ -42,7 +42,7 @@
 <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://pluspng.com/img-png/linux-logo-png-brand-brands-linux-logo-logos-icon-512x512.png" alt="linux" width="40" height="40"/> </a> 
  </p>
 
-<h2>Screenshots</h2>
+<h2 align="center">Screenshots</h2>
 
 ![Login screen with starry background](Screenshots/Login.png)
 ![Menu options: play, leaderboard, report bug, and logout](Screenshots/Menu.png)
@@ -56,7 +56,7 @@
 
 <h2 align="center">How to install the game on your own server:</h2>
 
-<h3 align="left">Working entirely on the Linux machine (virtual machine or local device) you want to serve the website from:</h3> 
+<h3 align="left">Method 1: Working entirely on the Linux machine (virtual machine or local device) you want to serve the website from:</h3> 
 
 (We used an Ubuntu server.)
 
@@ -115,7 +115,9 @@
     ```
 11. View and play the game online at YourServerAddress/LearningGame
 
-<h3 align="left">If you'd rather clone this repository on your local machine, edit the files there, and copy them onto a remote server or virtual machine to avoid the command line as much as possible:</h3> 
+
+
+<h3 align="left">Method 2: Clone this repository on your local machine, edit the files there, and copy them onto a remote server or virtual machine to avoid the command line as much as possible:</h3> 
 
 Terminology: Remote machine = virtual machine = VM = server = remote server. 
 
