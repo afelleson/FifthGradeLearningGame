@@ -86,15 +86,15 @@
     find /etc/LearningGame -name config.php -exec sed -i "s/Game1/NewDatabaseName/g" {} \;
     sed -i "s/Game1/NewDatabaseName/g" Game1.sql;
     ```
-9. Create a database called Game1 (or your own name) and import Game1.sql:
+9. Create a database called Game1 (or your own name) and import Game1.sql. (Replace 'root' with your username if needed.)
     ```shell
-    mysql -u YourUsername -p -e "CREATE DATABASE IF NOT EXISTS Game1 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
+    mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS Game1 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 
-    mysql -u YourUsername -p Game1 < Game1.sql;
+    mysql -u root -p Game1 < Game1.sql;
     ```
     Or, if your database is not hosted on the server you're running these commands on:
     ```shell 
-    mysql -h YourDatabaseHostName -u YourUsername -p Game1 < Game1.sql;
+    mysql -h YourDatabaseHostName -u root -p Game1 < Game1.sql;
     ```
 10. Make the web server the only user with read permissions on the config file:
     ```shell
